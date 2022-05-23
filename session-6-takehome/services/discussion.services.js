@@ -1,7 +1,8 @@
 const discussionModel = require("../models/discussion.models");
 
+
 class DiscussionServices {
-  createNew = async (body) => {
+  create = async (body) => {
     const newDiscussion = new discussionModel(body);
     const savedDiscussion = await newDiscussion.save();
     return savedDiscussion;
@@ -15,6 +16,11 @@ class DiscussionServices {
   findDiscussionById = async (id) => {
     const discussionById = await discussionModel.findById(id);
     return discussionById;
+  }
+
+  deleteById = async (id) => {
+    const result = await discussionModel.deleteOne({id});
+    return result;
   }
 }
 
